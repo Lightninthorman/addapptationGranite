@@ -5,33 +5,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="carousel/granite_carousel.css">
+    <link rel="stylesheet" href="navigation/granite_navigation.css">
+    <link rel="stylesheet" type="text/css" href="https://addapptation.blob.core.windows.net/addapptation-stylesheets/fontawesome-pro-5.10.0-11-web/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-bundle.min.js"></script>
     <title>Granite</title>
   </head>
   <body>
-    <div class="container">
-      <div id="hero-granite"></div>
-      <div id="granite-template"></div>
-      <div id="granite-carousel"></div>
-    </div>
-    <div id="hero-granite"></div>
-    <div id="granite-template"></div>
-    <div id="granite-carousel"></div>
-
+        <div id="granite-navigation"></div>
+        <div id="data_visualization-granite"></div>
+        <div id="hero-granite"></div>
+        <div id="granite-template"></div>
+        <div id="granite-carousel"></div>
+        <div id="granite-tiles"></div>
+        <div id="granite-cards"></div>
+        <div id="granite-content"></div>
     <script src='json/data.js'></script>
     <script src='template/granite_template.js'></script>
+    <script src='navigation/granite_navigation.js'></script>
     <script src='hero/granite_hero.js'></script>
     <script src='carousel/granite_carousel.js'></script>
+    <script src='data_visualization/granite_data_visualization.js'></script>
+    <script src='tiles/granite_tiles.js'></script>
+    <script src='cards/granite_cards.js'></script>
+    <script src='content/granite_content.js'></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   </body>
   <script>
-    const render = ["template", "carousel"];
+    const render = ["data_visualization"];
     const micros = {
         "template": ["granite_template", "templateBlock"],
         "hero": ["granite_hero", "heroBlock"]
     }
     render.forEach((micro) => {
         switch (micro){
+        case "navigation":
+            granite_navigation(navigationBlock, jsonTheme);
+        break;
         case "template":
             granite_template(templateBlock, jsonTheme);
         break;
@@ -41,8 +51,17 @@
         case "carousel":
             granite_carousel(carouselBlock, jsonTheme);
         break;
-        case "donut":
-            granite_donut(donutBlock, jsonTheme);
+        case "data_visualization":
+            granite_data_visualization(dataVisualizationBlock, jsonTheme);
+        break;
+        case "tiles":
+            granite_tiles(tilesBlock, jsonTheme);
+        break;
+        case "cards":
+            granite_cards(cardsBlock, jsonTheme);
+        break;
+        case "content":
+            granite_content(contentBlock, jsonTheme);
         break;
         default:
             //nothing

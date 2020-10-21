@@ -1,11 +1,13 @@
 function granite_hero(jsonHero, jsonTheme){
-    const id = jsonHero['id'];
-    const graniteID = "g__" + jsonHero['id'];
-    const cssID = "#g__" + jsonHero['id'];
-    const o = jsonHero.options;
-    const r = jsonHero.records;
-    const t = jsonTheme;
-    const height = !!o.height ? o.height : "50vh";
+    var json = jsonHero;
+    var jsonTheme = jsonTheme;
+    var id = json.id;
+    var graniteID = "g__" + json['id'];
+    var cssID = "#g__" + json['id'];
+    var o = json.options;
+    var r = json.records;
+    var t = jsonTheme;
+    var height = !!o.height ? o.height : "50vh";
     /*---------------------------------------------
     Add Font Family To Header
     ---------------------------------------------*/
@@ -38,47 +40,46 @@ function granite_hero(jsonHero, jsonTheme){
     /*---------------------------------------------
     Static CSS
     ---------------------------------------------*/
-    const line_height = !!o.line_height ? o.line_height : "36px";
-    const header_size = !!o.header_size ? o.header_size : "48px";
-    const description_size = !!o.description_size ? o.description_size : "28px";
-    const button_top_margin = !!o.button_top_margin ? o.button_top_margin : "30px";
-    const button_text_size = !!o.button_text_size ? o.button_text_size : "18px";
-    const button_left_right_padding = !!o.button_left_right_padding ? o.button_left_right_padding : "48px";
-    const overlay_opacity = !!o.overlay_opacity ? o.overlay_opacity : ".7";
-    const header_bottom_margin = !!o.header_bottom_margin ? o.header_bottom_margin : "15px";
-    const top_border_width = !!o.top_border_width ? o.top_border_width : "0";
-    const top_border_color = !!o.top_border_color ? o.top_border_color : "transparent";
-    const bottom_border_width = !!o.bottom_border_width ? o.bottom_border_width : "0";
-    const bottom_border_color = !!o.bottom_border_color ? o.bottom_border_color : "transparent";
+    var line_height = !!o.line_height ? o.line_height : "36px";
+    var header_size = !!o.header_size ? o.header_size : "48px";
+    var description_size = !!o.description_size ? o.description_size : "28px";
+    var button_top_margin = !!o.button_top_margin ? o.button_top_margin : "30px";
+    var button_text_size = !!o.button_text_size ? o.button_text_size : "18px";
+    var button_left_right_padding = !!o.button_left_right_padding ? o.button_left_right_padding : "48px";
+    var overlay_opacity = !!o.overlay_opacity ? o.overlay_opacity : ".7";
+    var header_bottom_margin = !!o.header_bottom_margin ? o.header_bottom_margin : "15px";
+    var top_border_width = !!o.top_border_width ? o.top_border_width : "0";
+    var top_border_color = !!o.top_border_color ? o.top_border_color : "transparent";
+    var bottom_border_width = !!o.bottom_border_width ? o.bottom_border_width : "0";
+    var bottom_border_color = !!o.bottom_border_color ? o.bottom_border_color : "transparent";
 
     /*---------------------------------------------
     Layout Case Block
     ---------------------------------------------*/
-    let container_position, content_align, desc_align, content_width;
     switch (o.align_content){
         case "center":
-            container_position = "center";
-            content_align = "center";
-            desc_align = "center";
-            content_width = !!o.content_width ? o.content_width : "80%"
+            var container_position = "center";
+            var content_align = "center";
+            var desc_align = "center";
+            var content_width = !!o.content_width ? o.content_width : "80%"
         break;
         case "right":
-            container_position = "flex-end";
-            content_align = "flex-start";
-            desc_align = "left";
-            content_width = !!o.content_width ? o.content_width : "50%"
+            var container_position = "flex-end";
+            var content_align = "flex-start";
+            var desc_align = "left";
+            var content_width = !!o.content_width ? o.content_width : "50%"
         break;
         default:
-            container_position = "flex-start";
-            content_align = "flex-start";
-            desc_align = "left";
-            content_width = !!o.content_width ? o.content_width : "50%"
+            var container_position = "flex-start";
+            var content_align = "flex-start";
+            var desc_align = "left";
+            var content_width = !!o.content_width ? o.content_width : "50%"
         break;
     }
     /*---------------------------------------------
-    Theme Case Block
+    CSS Block
     ---------------------------------------------*/
-    let heroCss = document.createElement('style');
+    var heroCss = document.createElement('style');
     heroCss.innerHTML = `
     ${cssID}.g__hero_wrapper{
         --primary: 212, 70, 151;
@@ -93,7 +94,7 @@ function granite_hero(jsonHero, jsonTheme){
         --font-regular: hero-new, sans-serif;
         --font-bold: hero-new, sans-serif;
     }
-    ${cssID}.g__hero_wrapper[theme="dark"]{
+    ${cssID}.g__hero_wrapper[mode="midnight"]{
         --primary: 212, 70, 151;
         --bottom-background: #101010;
         --background: #101010;
@@ -121,7 +122,7 @@ function granite_hero(jsonHero, jsonTheme){
     ${cssID}.g__hero_wrapper.theme_color:after {
         content: '';
         background-color: var(--overlay);
-        opacity: ${o.overlay_opacity};
+        opacity: ${overlay_opacity};
         position: absolute;
         top: 0;
         left: 0;
@@ -131,7 +132,7 @@ function granite_hero(jsonHero, jsonTheme){
     ${cssID}.g__hero_wrapper.theme_custom:after {
         content: '';
         background-color: ${o.overlay_color};
-        opacity: ${o.overlay_opacity};
+        opacity: ${overlay_opacity};
         position: absolute;
         top: 0;
         left: 0;
@@ -266,6 +267,12 @@ function granite_hero(jsonHero, jsonTheme){
         ${cssID} .g__hero_btn.white_btn{
             text-align: center;
         }
+        ${cssID} .g__hero_btn{
+            padding: 10px;
+        }
+        ${cssID} .g__hero_header{
+            font-size: 42px;
+        }
     }
     `
     document.head.appendChild(heroCss);
@@ -274,8 +281,8 @@ function granite_hero(jsonHero, jsonTheme){
     hero_wrapper.setAttribute('id', graniteID);
     hero_wrapper.setAttribute('class','g__hero_wrapper');
     hero_wrapper.setAttribute('style', heroBkg(o) );
-    hero_wrapper.setAttribute('theme', mode(t) );
-    hero_wrapper.classList.add( themeStyle(o) );
+    hero_wrapper.setAttribute('mode', mode(t) );
+    hero_wrapper.classList.add( themeStyle(t) );
     /* Hero Container */
     var hero_container = document.createElement('div');
     hero_container.setAttribute('class','g__hero_container');
@@ -322,10 +329,12 @@ function granite_hero(jsonHero, jsonTheme){
                 : o.button_style === "pink"   ? "g__cta_button_color"
                 : "g__cta_button_white";
     }
-    function themeStyle(o){
-        if( (o.theme === "dark") && !!o.background_image ){
+    function themeStyle(t){
+        if( !!o.overlay_color && !!o.background_image ){
+            return "theme_custom";
+        }else if( (t.mode === "midnight") && !!o.background_image ){
             return "theme_color";
-        }else if( (o.theme === "light") && !!o.background_image ){
+        }else if( (t.mode === "standard") && !!o.background_image ){
             return "theme_color";
         }else{
             if(!!o.background_image){
@@ -340,7 +349,7 @@ function granite_hero(jsonHero, jsonTheme){
         if(t.mode === "standard"){
             return "light"
         }else{
-            return "dark"
+            return "midnight"
         }
       }
     /*---------------------------------------------

@@ -39,7 +39,7 @@ function granite_template(jsonTemplate, jsonTheme){
     }
 
     /*---------------------------------------------
-    Theme Case Block
+    CSS Block
     ---------------------------------------------*/
     var heroCss = document.createElement('style');
     heroCss.innerHTML = `

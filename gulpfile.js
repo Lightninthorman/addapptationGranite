@@ -25,6 +25,12 @@ function hero(){
     .pipe(minify())
     .pipe(dest('dist/hero'));
 }
+function carousel(){
+    return src('src/carousel/*.js')
+    .pipe(babel())
+    .pipe(minify())
+    .pipe(dest('dist/carousel'));
+}
 function tiles(){
     return src('src/tiles/*.js')
     .pipe(babel())
@@ -35,4 +41,5 @@ function tiles(){
 exports.serve = serve;
 exports.hero = hero;
 exports.tiles = tiles;
+exports.carousel = carousel;
 exports.default = serve;

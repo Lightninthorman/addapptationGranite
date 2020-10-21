@@ -2,9 +2,11 @@
 
 This section of the article goes through the steps you need to follow – and some things you need to consider – when creating a well-structured addapptation Adapter.
 
+We'll be using 'template' as our example micro.
+
 ## Basic Micro Function
 ```js
-granite_[microName]([microName]Block, jsonTheme){
+function granite_template(templateBlock, jsonTheme){
   Micro Code
 }
 ```
@@ -19,8 +21,8 @@ const t = jsonTheme
 ```
 ## Block Level CSS in JS
 ```js
-var heroCss = document.createElement('style');
-heroCss.innerHTML = `
+var templateCss = document.createElement('style');
+templateCss.innerHTML = `
 .g__micro_wrapper{
     display: flex;
     flex-direction: row;
@@ -54,19 +56,39 @@ heroCss.innerHTML = `
     font-weight: 300;
 }
 `
-document.head.appendChild(heroCss);
+document.head.appendChild(templateCss);
+```
+## Layout Case Block with Felxbox
+```js
+switch (o.layout){
+      case "left":
+        var content_layout = "row";
+        var content_align = "flex-start";
+        var desc_align = "left";
+      break;
+      case "right":
+        var content_layout = "row-reverse";
+        var content_align = "flex-end";
+        var desc_align = "left";
+      break;
+      default:
+        var content_layout = "column";
+        var content_align = "center";
+        var desc_align = "center";
+      break;
+    }
 ```
 ## Wrapper
 ```js
 /*---------------------------------------------
 Wrapper
 ---------------------------------------------*/
-const hero_wrapper = document.createElement('div');
-hero_wrapper.setAttribute('id', "granite-123");
-hero_wrapper.setAttribute('class','g__micro_wrapper');
-hero_wrapper.setAttribute('mode','midnight');
+const template_wrapper = document.createElement('div');
+template_wrapper.setAttribute('id', "granite-123");
+template_wrapper.setAttribute('class','g__micro_wrapper');
+template_wrapper.setAttribute('mode', t.mode);
 ```
 ## Append micro to the DOM
 ```js
-document.getElementById(id).appendChild(hero_wrapper);
+document.getElementById(id).appendChild(template_wrapper);
 ```
