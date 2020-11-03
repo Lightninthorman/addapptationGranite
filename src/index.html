@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="carousel/granite_carousel.css">
     <link rel="stylesheet" href="navigation/granite_navigation.css">
+    <link rel="stylesheet" href="https://cdn.addapptation.com/addapptation-stylesheets/anychart-ui.css">
     <link rel="stylesheet" type="text/css" href="https://addapptation.blob.core.windows.net/addapptation-stylesheets/fontawesome-pro-5.10.0-11-web/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-bundle.min.js"></script>
+
     <title>Granite</title>
   </head>
   <body>
@@ -20,6 +21,7 @@
         <div id="granite-tiles"></div>
         <div id="granite-cards"></div>
         <div id="granite-content"></div>
+        <div id="granite-heatmap"></div>
     <script src='json/data.js'></script>
     <script src='template/granite_template.js'></script>
     <script src='navigation/granite_navigation.js'></script>
@@ -29,6 +31,8 @@
     <script src='tiles/granite_tiles.js'></script>
     <script src='cards/granite_cards.js'></script>
     <script src='content/granite_content.js'></script>
+    <script src='heatmap/granite_heatmap.js'></script>
+    <script src="https://cdn.addapptation.com/addapptation-stylesheets/anychart-bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   </body>
   <script>
@@ -62,6 +66,9 @@
         break;
         case "content":
             granite_content(contentBlock, jsonTheme);
+        break;
+        case "heatmap":
+            granite_heatmap(heatmapBlock, jsonTheme);
         break;
         default:
             //nothing

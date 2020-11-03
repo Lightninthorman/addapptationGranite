@@ -8,7 +8,6 @@ function granite_navigation(jsonNav, jsonTheme){
     var options = json.options;
     var records = json.records;
     var t = jsonTheme;
-    console.log(t);
     var content = (document.getElementById(targetID).innerHTML).trim();
     var nav_root = document.documentElement;
     const font_include = document.getElementById('g__font_stylesheet');
@@ -102,13 +101,13 @@ function granite_navigation(jsonNav, jsonTheme){
     // CSS VARIABLES --topbarMobileMenuBackground
     var topbar_over_content = "60px";
     var cta_button_padding = !!options.cta_button_padding ? options.cta_button_padding : "48px";
+    var cta_link_left_margin = !!options.cta_link_left_margin ? options.cta_link_left_margin : "10px";
     var topbar_mobile_menu_background = t.mode === "midnight" ? "#101010" : "#ffffff";
     var topbar_mobile_font_color = t.mode === "midnight" ? "#ffffff" : "#101010";
     var font_color = !!options.font_color ? hexToRgb(options.font_color) : "#fff";
     var topbar_submenu_background = t.mode === "midnight" ? "#101010" : "#ffffff";
     var topbar_submenu_hover = t.mode === "midnight" ? "rgba(255, 255, 255, .2)" : "rgba(0, 0, 0, .2)";
     var topbar_submenu_active = t.mode === "midnight" ? "rgba(255, 255, 255, .3)" : "rgba(0, 0, 0, .3)";
-    console.log(font_color);
     if(!!options){
         nav_root.style.setProperty('--active', primary); /*options.highlight*/
         nav_root.style.setProperty('--color', font_color);
@@ -124,6 +123,7 @@ function granite_navigation(jsonNav, jsonTheme){
         nav_root.style.setProperty('--ctaButtonFontSize', options.cta_button_font_size);
         nav_root.style.setProperty('--ctaButtonPadding', cta_button_padding);
         nav_root.style.setProperty('--ctaLinkFontSize', options.cta_link_font_size);
+        nav_root.style.setProperty('--ctaLinkLeftMargin', cta_link_left_margin);
         nav_root.style.setProperty('--topbarPaddingRight', options.topbar_padding_right);
         nav_root.style.setProperty('--topbarPaddingLeft', options.topbar_padding_left);
         nav_root.style.setProperty('--topbarMobileMenuBackground', topbar_mobile_menu_background);
@@ -230,7 +230,6 @@ function granite_navigation(jsonNav, jsonTheme){
             }
         }
         function mode(){
-            console.log(t);
             if(t.mode === "standard"){
                 return "standard"
             }else{

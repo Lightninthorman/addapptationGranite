@@ -392,12 +392,26 @@ function granite_content(jsonContent, jsonTheme){
             image_container.setAttribute('style',`margin-bottom:${r.featured_image_bottom_margin}; text-align:${r.align_text};`);
             content_block.appendChild(image_container);
 
+            /* Image Link */
+            if(!!r.featured_image_link){
+                var image_link = document.createElement('a');
+                image_link.setAttribute('class','g__image_link');
+                image_link.setAttribute('target',`${r.featured_image_target ? "_blank" : "_self"}`);
+                image_link.setAttribute('href',`${r.featured_image_link}`);
+                image_container.appendChild(image_link);
+            }
+
             /* Image */
             var content_image = document.createElement('img');
             content_image.setAttribute('src', r.featured_image);
             content_image.setAttribute('class', "img-fluid");
             content_image.setAttribute('style',`max-width:${r.featured_image_max_width};`);
-            image_container.appendChild(content_image)
+            if(!!r.featured_image_link){
+                image_link.appendChild(content_image)
+            } else {
+                image_container.appendChild(content_image)
+            }
+
         }
         /* Header */
         if(!!r.header){
@@ -443,7 +457,7 @@ function granite_content(jsonContent, jsonTheme){
     Functions
     ---------------------------------------------*/
     function contentBkg(o){
-        return    !!o.background_image ? `background: url(${o.background_image}) ${o.align_background_image}; background-size:cover;`
+        return    !!o.background_image ? `background: url(${o.background_image}); background-size:cover;`
                 : !!o.background_color ? `background:${o.background_color}`
                 : "background:transparent";
     }
